@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rebar – from hand drawing to CAD</title>
+    <meta
+      name="description"
+      content="rebar uses AI to turn hand-drawn and scanned building drawings into layered, accurately scaled CAD files. For public authorities, architects, engineers and contractors."
+    />
+    <meta property="og:title" content="rebar – from hand drawing to CAD" />
+    <meta
+      property="og:description"
+      content="AI that turns hand-drawn building drawings into layered, accurately scaled CAD files."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rebar.dk/en/" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="da_DK" />
+    <link rel="canonical" href="https://rebar.dk/en/" />
+    <link rel="alternate" hreflang="da" href="https://rebar.dk/" />
+    <link rel="alternate" hreflang="en" href="https://rebar.dk/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://rebar.dk/" />
+    <meta name="theme-color" content="#f6f1e4" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../fonts/architects-daughter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../lens.js" defer></script>
+  </head>
+  <body>
+    <!-- Pencil filters for the sketch layer. Plan geometry lives in ../plan.svg, shared with the Danish page. -->
+    <svg class="defs" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="2" />
+          <feDisplacementMap in="SourceGraphic" scale="6" />
+        </filter>
+        <filter id="rough-2" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="9" />
+          <feDisplacementMap in="SourceGraphic" scale="9" />
+        </filter>
+        <filter id="rough-sm" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="4" />
+          <feDisplacementMap in="SourceGraphic" scale="2.5" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="stage">
+      <div class="layer layer--sketch">
+        <header class="site-header wrap">
+          <a class="logo" href="#top" aria-label="rebar – back to top">
+            <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+              <rect x="3" y="3" width="34" height="34" />
+              <path d="M14 30V14M14 20C17 15 21 13 27 13" />
+            </svg>
+            <span class="logo__text">rebar</span>
+          </a>
+          <nav class="site-nav" aria-label="Main menu">
+            <a href="#how">How it works</a>
+            <a href="#who">Who it's for</a>
+            <a href="#recognised">What it recognises</a>
+            <a class="lang-switch" href="/" hreflang="da" lang="da">Dansk</a>
+          </nav>
+        </header>
+
+        <main id="top">
+          <section class="hero wrap">
+            <div class="hero__text">
+              <p class="kicker">AI for building drawings</p>
+              <h1>From <mark>hand drawing</mark> to CAD file</h1>
+              <p class="lead">
+                rebar uses artificial intelligence to turn hand-drawn and scanned building drawings into layered,
+                accurately scaled CAD files. For public authorities, architects, engineers and contractors working with
+                existing buildings.
+              </p>
+              <p class="hint hint--hover">Move your mouse over the page to see it drawn up in CAD.</p>
+              <p class="hint hint--touch">Tap “Show as CAD” to see the page drawn up in CAD.</p>
+            </div>
+
+            <figure class="hero__figure box" data-layer="A-PLAN">
+              <svg
+                class="plan"
+                viewBox="-120 -130 1440 1030"
+                role="img"
+                aria-label="Floor plan of a flat with living room, kitchen, hall, bedroom and bathroom"
+              >
+                <use class="p-walls-o" href="../plan.svg#g-walls-outer" />
+                <use class="p-walls-o2" href="../plan.svg#g-walls-outer" />
+                <use class="p-walls-i" href="../plan.svg#g-walls-inner" />
+                <use class="p-walls-i2" href="../plan.svg#g-walls-inner" />
+                <use class="p-win" href="../plan.svg#g-windows" />
+                <use class="p-furn" href="../plan.svg#g-furniture" />
+                <use class="p-leaf" href="../plan.svg#g-door-leaves" />
+                <use class="p-swing" href="../plan.svg#g-door-swings" />
+
+                <g class="p-labels" text-anchor="middle">
+                  <text x="290" y="180">Living room</text>
+                  <text x="540" y="535">Kitchen</text>
+                  <text x="750" y="590">Hall</text>
+                  <text x="1040" y="395">Bedroom</text>
+                  <text x="1000" y="560">Bath</text>
+                </g>
+                <g class="p-areas cad-only" text-anchor="middle">
+                  <text x="290" y="210">32.5 m²</text>
+                  <text x="540" y="565">19.5 m²</text>
+                  <text x="750" y="620">16.0 m²</text>
+                  <text x="1040" y="425">15.8 m²</text>
+                  <text x="1000" y="590">12.3 m²</text>
+                </g>
+
+                <g class="p-dims cad-only">
+                  <path class="dim-ext" d="M0 -25V-95M650 -25V-60M850 -25V-60M1200 -25V-95" />
+                  <path class="dim-line" d="M-10 -50H1210M-10 -85H1210" />
+                  <path class="dim-tick" d="M-8 -42L8 -58M642 -42L658 -58M842 -42L858 -58M1192 -42L1208 -58" />
+                  <path class="dim-tick" d="M-8 -77L8 -93M1192 -77L1208 -93" />
+                  <g text-anchor="middle">
+                    <text x="325" y="-58">6500</text>
+                    <text x="750" y="-58">2000</text>
+                    <text x="1025" y="-58">3500</text>
+                    <text x="600" y="-93">12000</text>
+                  </g>
+                  <path class="dim-ext" d="M-25 0H-95M-25 500H-60M-25 800H-95" />
+                  <path class="dim-line" d="M-50 -10V810M-85 -10V810" />
+                  <path class="dim-tick" d="M-58 8L-42 -8M-58 508L-42 492M-58 808L-42 792" />
+                  <path class="dim-tick" d="M-93 8L-77 -8M-93 808L-77 792" />
+                  <g text-anchor="middle">
+                    <text transform="translate(-58 250) rotate(-90)">5000</text>
+                    <text transform="translate(-58 650) rotate(-90)">3000</text>
+                    <text transform="translate(-93 400) rotate(-90)">8000</text>
+                  </g>
+                  <path class="dim-ext" d="M1225 0H1260M1225 450H1260M1225 800H1260" />
+                  <path class="dim-line" d="M1245 -10V810" />
+                  <path class="dim-tick" d="M1237 8L1253 -8M1237 458L1253 442M1237 808L1253 792" />
+                  <g text-anchor="middle">
+                    <text transform="translate(1272 225) rotate(90)">4500</text>
+                    <text transform="translate(1272 625) rotate(90)">3500</text>
+                  </g>
+                </g>
+
+                <g class="p-notes sketch-only">
+                  <path d="M20 -60C200 -75 420 -40 600 -62S1000 -50 1180 -66" />
+                  <path d="M1160 -80L1182 -66L1158 -52M40 -76L18 -62L42 -48" />
+                  <text x="600" y="-80" text-anchor="middle">approx. 12 m</text>
+                  <text x="-60" y="420" text-anchor="middle" transform="rotate(-90 -60 420)">8 m?</text>
+                  <path d="M1150 720C1230 760 1260 840 1180 870" />
+                  <text x="1080" y="880" text-anchor="middle">new bath?</text>
+                </g>
+              </svg>
+              <figcaption>Plan, ground floor · 1:100</figcaption>
+            </figure>
+          </section>
+
+          <hr class="rule" />
+
+          <section class="section wrap" id="how" aria-labelledby="how-h">
+            <h2 id="how-h">How it works</h2>
+            <ol class="cards">
+              <li class="card box" data-layer="STEP-01">
+                <span class="card__num">1</span>
+                <h3>Upload the drawing</h3>
+                <p>Scan, photo or PDF. Yellowed tracing paper, pencil notes, stamps and corrections included.</p>
+              </li>
+              <li class="card box" data-layer="STEP-02">
+                <span class="card__num">2</span>
+                <h3>The AI reads the plan</h3>
+                <p>Walls, doors, windows, stairs, dimensions and room names are recognised, straightened and set to the correct scale.</p>
+              </li>
+              <li class="card box" data-layer="STEP-03">
+                <span class="card__num">3</span>
+                <h3>Download the CAD file</h3>
+                <p>Export as DWG or DXF with organised layers – ready to continue in your CAD software.</p>
+              </li>
+            </ol>
+          </section>
+
+          <hr class="rule" />
+
+          <section class="section wrap" id="who" aria-labelledby="who-h">
+            <h2 id="who-h">Who it's for</h2>
+            <div class="cards">
+              <article class="card box" data-layer="AUTHORITY">
+                <h3>Public authorities</h3>
+                <p>
+                  Make the building permit archive digital and reusable. Historic drawings become data that can be
+                  shared, searched and used in new cases.
+                </p>
+              </article>
+              <article class="card box" data-layer="CONSULTANT">
+                <h3>Architects and engineers</h3>
+                <p>
+                  Start renovations and conversions from a digital basis instead of redrawing existing conditions from
+                  scratch.
+                </p>
+              </article>
+              <article class="card box" data-layer="CONTRACTOR">
+                <h3>Contractors</h3>
+                <p>Get accurately scaled plans fast for tenders, quantity take-offs and site planning.</p>
+              </article>
+            </div>
+          </section>
+
+          <hr class="rule" />
+
+          <section class="section wrap" id="recognised" aria-labelledby="recognised-h">
+            <h2 id="recognised-h">What it recognises</h2>
+            <p class="section__intro">
+              rebar understands the elements of a drawing – not just the lines – and puts each on its own layer.
+            </p>
+            <ul class="elements">
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M4 16H44M4 32H44M8 32L16 16M18 32L26 16M28 32L36 16M38 32L44 20" />
+                </svg>
+                <span class="element__name">Walls</span><span class="element__layer">A-WALL</span>
+              </li>
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M2 40H12M36 40H46M12 40V16M12 16A24 24 0 0 1 36 40" />
+                </svg>
+                <span class="element__name">Doors</span><span class="element__layer">A-DOOR</span>
+              </li>
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M2 18H10M38 18H46M2 30H10M38 30H46M10 18H38V30H10ZM10 24H38" />
+                </svg>
+                <span class="element__name">Windows</span><span class="element__layer">A-GLAZ</span>
+              </li>
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M12 4H36V44H12ZM12 12H36M12 20H36M12 28H36M12 36H36M24 40V8M19 13L24 8L29 13" />
+                </svg>
+                <span class="element__name">Stairs</span><span class="element__layer">A-FLOR-STRS</span>
+              </li>
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M4 30H44M6 20V38M42 20V38M2 34L10 26M38 34L46 26M16 22H32" />
+                </svg>
+                <span class="element__name">Dimensions</span><span class="element__layer">A-ANNO-DIMS</span>
+              </li>
+              <li class="element">
+                <svg class="icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M6 38L15 10L24 38M9 29H21M30 18H44M30 26H44M30 34H40" />
+                </svg>
+                <span class="element__name">Room names and text</span><span class="element__layer">A-ANNO-TEXT</span>
+              </li>
+            </ul>
+          </section>
+        </main>
+
+        <footer class="site-footer wrap">
+          <dl class="titleblock box" data-layer="TITLE BLOCK">
+            <div><dt>Project</dt><dd>rebar.dk</dd></div>
+            <div><dt>Drawing</dt><dd>Home</dd></div>
+            <div><dt>Scale</dt><dd>1:1</dd></div>
+            <div><dt>Copyright</dt><dd>© 2026 rebar</dd></div>
+          </dl>
+        </footer>
+      </div>
+    </div>
+
+    <button
+      class="mode-toggle"
+      type="button"
+      aria-pressed="false"
+      data-label-cad="Show as CAD"
+      data-label-sketch="Show as sketch"
+      hidden
+    >
+      Show as CAD
+    </button>
+  </body>
+</html>

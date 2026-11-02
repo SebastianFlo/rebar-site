@@ -4,26 +4,34 @@ Danish landing page for rebar, an AI service that turns hand-drawn building plan
 
 ## How the page works
 
-The page is drawn twice. The hand-drawn layer (`.layer--sketch`) is the real page. `lens.js` clones it into a CAD layer (`.layer--cad`) stacked on top and clipped to a circle around the mouse pointer. The **Vis som CAD** button grows that circle over the whole page, for touch screens and keyboard users. Without JavaScript, visitors see the sketch layer only.
+The page is drawn twice. The hand-drawn layer (`.layer--sketch`) is the real page. `lens.js` clones it into a CAD layer (`.layer--cad`) stacked on top and clipped to a circle around the mouse pointer. The **Vis som CAD** / **Show as CAD** button grows that circle over the whole page, for touch screens and keyboard users. Without JavaScript, visitors see the sketch layer only.
+
+The site is in Danish (`/`, the default) and English (`/en/`). The two pages link to each other via the language switch in the header and declare each other with `hreflang`. There's no automatic redirect based on browser language.
 
 | File | Contents |
 |---|---|
-| `index.html` | Content (Danish) and the shared plan geometry in `<defs>`. Both layers `<use>` the same geometry, so the drawings line up exactly. |
+| `index.html` | Danish page. |
+| `en/index.html` | English page. Same markup as the Danish page with translated text; assets are referenced with `../`. |
+| `plan.svg` | Floor plan geometry shared by both pages and both layers (`<use href="plan.svg#g-…">`), so the drawings line up exactly. |
 | `styles.css` | Shared layout, then the sketch styles, then the CAD styles, then the lens. |
-| `lens.js` | Clones the layer, equalises text block heights between the two fonts, and tracks the pointer. |
+| `lens.js` | Clones the layer, equalises text block heights between the two fonts, and tracks the pointer. Toggle button labels come from its `data-label-cad` / `data-label-sketch` attributes. |
 | `fonts/` | Self-hosted Architects Daughter (sketch) and JetBrains Mono (CAD), both under the SIL Open Font License. Self-hosted rather than loaded from Google Fonts, to avoid sending visitor IP addresses to Google. |
 
 When editing:
 
-- Change content only in `index.html`. The CAD layer is generated from it.
+- Change content in **both** `index.html` and `en/index.html`, and keep their structure identical. The CAD layer is generated from each page.
 - Layer-specific extras must not affect layout. Use `.sketch-only` / `.cad-only` with absolute positioning, or pseudo-elements. Otherwise the layers drift apart vertically.
-- The plan is drawn in centimetres (12 × 8 m flat). Dimension texts in the CAD layer are hard-coded and must match the geometry.
+- The plan is drawn in centimetres (12 × 8 m flat). Room labels, areas and dimension texts are in each page (Danish `6.500` / `32,5 m²`, English `6500` / `32.5 m²`) and must match the geometry in `plan.svg`.
 
 The Vue source of the earlier site lives in the separate `SebastianFlo/rebar.dk` repo.
 
 ## DNS
 
-Cloudflare, **proxied** (orange cloud): four `A` records for `@` pointing at `185.199.108–111.153`, and `www` as a `CNAME` to `sebastianflo.github.io`. The `_github-pages-challenge-SebastianFlo` TXT record verifies the domain on GitHub. The one.com MX records and the Google verification TXT record handle email and Search Console and are unrelated to the site.
+Cloudflare, **proxied** (orange cloud): four `A` records for `@` pointing at `185.199.108–111.153`, and `www` as a `CNAME` to `sebastianflo.github.io`. The `_github-pages-challenge-SebastianFlo` TXT record verifies the domain on GitHub. The Google verification TXT record is for Search Console.
+
+## Email
+
+`kontakt@rebar.dk` is handled by Cloudflare Email Routing, which forwards it to a personal inbox (Cloudflare dashboard → rebar.dk → Email → Email Routing). Cloudflare manages the MX records (`route1/2/3.mx.cloudflare.net`), the SPF record and the DKIM record; don't edit them by hand. Email Routing only receives: replies go out from the destination inbox.
 
 ## HTTPS
 

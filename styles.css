@@ -152,6 +152,12 @@ body {
   gap: 0.25rem 1.5rem;
 }
 
+/* Language switch: same box in both layers (padding + 1.5px border) so they align. */
+.site-nav .lang-switch {
+  padding-inline: 0.5rem;
+  border: 1.5px solid currentColor;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -355,6 +361,12 @@ figcaption {
   text-decoration: none;
 }
 
+.layer--sketch .lang-switch {
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
 .layer--sketch .logo__mark,
 .layer--sketch .icon {
   filter: url(#rough-sm);
@@ -498,6 +510,11 @@ figcaption {
 
 .layer--cad .logo {
   color: var(--ink);
+}
+
+.layer--cad .lang-switch {
+  border-color: rgb(90 209 255 / 0.55);
+  letter-spacing: 0.04em;
 }
 
 .layer--cad .logo__mark {

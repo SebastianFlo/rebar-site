@@ -103,7 +103,7 @@
   toggle.addEventListener("click", () => {
     full = !full;
     toggle.setAttribute("aria-pressed", String(full));
-    toggle.textContent = full ? "Vis som skitse" : "Vis som CAD";
+    toggle.textContent = full ? toggle.dataset.labelSketch : toggle.dataset.labelCad;
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", full ? "#0b1622" : "#f6f1e4");
 
     if (full) {

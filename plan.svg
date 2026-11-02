@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Floor plan geometry shared by the Danish and English pages, referenced with
+    <use href="plan.svg#g-…">. Styling (stroke, filters) comes from styles.css.
+    Units: cm. 12 x 8 m flat, outer walls 30 cm, inner walls 12 cm.
+  -->
+  <defs>
+    <g id="g-walls-outer">
+      <path d="M-15 0H100M300 0H380M580 0H950M1120 0H1215" />
+      <path d="M-15 800H120M320 800H700M800 800H1215" />
+      <path d="M0 -15V560M0 740V815" />
+      <path d="M1200 -15V600M1200 680V815" />
+    </g>
+    <g id="g-walls-inner">
+      <path d="M650 0V300M650 420V800" />
+      <path d="M850 0V300M850 380V520M850 600V800" />
+      <path d="M850 450H1200" />
+      <path d="M0 500H180" />
+    </g>
+    <g id="g-windows">
+      <path d="M100 -15H300V15H100ZM100 0H300" />
+      <path d="M380 -15H580V15H380ZM380 0H580" />
+      <path d="M950 -15H1120V15H950ZM950 0H1120" />
+      <path d="M120 785H320V815H120ZM120 800H320" />
+      <path d="M-15 560H15V740H-15ZM0 560V740" />
+      <path d="M1185 600H1215V680H1185ZM1200 600V680" />
+    </g>
+    <g id="g-door-leaves">
+      <path d="M650 300H530" />
+      <path d="M850 300H930" />
+      <path d="M850 600H930" />
+      <path d="M700 800V700" />
+    </g>
+    <g id="g-door-swings">
+      <path d="M530 300A120 120 0 0 0 650 420" />
+      <path d="M930 300A80 80 0 0 1 850 380" />
+      <path d="M930 600A80 80 0 0 0 850 520" />
+      <path d="M700 700A100 100 0 0 1 800 800" />
+    </g>
+    <g id="g-furniture">
+      <!-- living room: sofa, coffee table, dining table -->
+      <rect x="80" y="360" width="280" height="80" rx="8" />
+      <path d="M80 382H360" />
+      <rect x="150" y="250" width="140" height="70" rx="6" />
+      <circle cx="500" cy="170" r="55" />
+      <rect x="432" y="155" width="18" height="30" rx="3" />
+      <rect x="550" y="155" width="18" height="30" rx="3" />
+      <rect x="485" y="102" width="30" height="18" rx="3" />
+      <rect x="485" y="220" width="30" height="18" rx="3" />
+      <!-- kitchen: worktops, sink, hob, island -->
+      <path d="M15 515H75V725H405V785H15Z" />
+      <rect x="190" y="735" width="70" height="40" rx="6" />
+      <rect x="25" y="560" width="40" height="70" rx="3" />
+      <circle cx="45" cy="578" r="9" />
+      <circle cx="45" cy="612" r="9" />
+      <rect x="250" y="570" width="220" height="80" rx="4" />
+      <!-- bedroom: wardrobe, bed -->
+      <rect x="865" y="15" width="60" height="270" />
+      <path d="M865 105H925M865 195H925" />
+      <rect x="1000" y="130" width="185" height="200" rx="4" />
+      <rect x="1135" y="142" width="38" height="80" rx="6" />
+      <rect x="1135" y="238" width="38" height="80" rx="6" />
+      <path d="M1060 130V330" />
+      <!-- bathroom: bathtub, toilet, washbasin -->
+      <rect x="1100" y="465" width="85" height="175" rx="10" />
+      <rect x="1110" y="475" width="65" height="155" rx="22" />
+      <rect x="870" y="767" width="60" height="18" rx="3" />
+      <ellipse cx="900" cy="740" rx="22" ry="28" />
+      <path d="M1000 785A40 22 0 0 1 1080 785Z" />
+    </g>
+  </defs>
+</svg>
